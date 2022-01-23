@@ -1,0 +1,9 @@
+/.idea
+/venv
+
+# work in Docker
+.ash_history
+.bash_history
+
+# package for upload...
+*.zip
