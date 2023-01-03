@@ -70,7 +70,7 @@ pkg 配下のファイルを zip 形式で圧縮します。 pkg ディレクト
 Docker をお使いの方は以下コマンドで圧縮済みのファイルが用意できます。
 
 ```shell
-docker run --rm -it -v `pwd`:/root -w /root alpine ./docker-entrypoint.sh 
+docker run --rm -it -v `pwd`:/root -w /root alpine ./docker-entrypoint.sh
 ```
 
 以下、トラブルシューティング。
@@ -114,7 +114,7 @@ docker run --rm -it -v /`pwd`:/root -w //root alpine ./docker-entrypoint.sh
   - slack_post_channel: 投稿する Slack のチャンネル
   - tag_iam_username: 曲情報ハッシュ格納用の IAM ユーザ名
 
-現在対応している station_key については [対応しているラジオ局](#we-support-many-several-radio-stations) をご覧ください。
+現在対応している station_key については [対応しているラジオ局](#we-support-many-several-radio-stations-) をご覧ください。
 
 ---
 
