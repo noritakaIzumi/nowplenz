@@ -114,19 +114,23 @@ docker run --rm -it -v /`pwd`:/root -w //root alpine ./docker-entrypoint.sh
   - slack_post_channel: 投稿する Slack のチャンネル
   - tag_iam_username: 曲情報ハッシュ格納用の IAM ユーザ名
 
-現在対応している station_key については [対応しているラジオ局](#we-support-many-several-radio-stations-) をご覧ください。
+現在対応している station_key については [対応しているラジオ局](#we-support-many-radio-stations-) をご覧ください。
 
 ---
 
-## We support ~~many~~ several radio stations!
+## We support many radio stations!
 
 `station_key`: station name
 
 ### Japan
 
 - Tohoku
+  - `afb`: エフエム青森
   - `fm-akita`: エフエム秋田
+  - `fmii`: エフエム岩手
+  - `rfm`: エフエム山形
   - `771fm`: Date fm
+  - `fmf`: ふくしま FM
 - Kanto
   - `jwave`: J-WAVE (東京)
 - Kinki
