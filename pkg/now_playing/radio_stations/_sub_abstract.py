@@ -32,7 +32,7 @@ class MtmDefaultRadioStation(AbstractRadioStation):
 
     def get_np_url(self) -> str:
         # noinspection HttpUrlsUsage
-        return f'http://www.keitai.fm/search/view/{self.station_id}/'
+        return f'https://noa.audee.jp/search/view/{self.station_id}/'
 
     def get_song_info(self) -> SongInfo:
         f: IO
