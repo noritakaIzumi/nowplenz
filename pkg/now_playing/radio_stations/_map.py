@@ -5,9 +5,10 @@ from now_playing.core import AbstractRadioStation
 import now_playing.radio_stations.kinki as kinki
 import now_playing.radio_stations.kanto as kanto
 import now_playing.radio_stations.tohoku as tohoku
+import now_playing.radio_stations.chugoku as chugoku
 
 RADIO_STATION_MAP: Dict[str, Type[AbstractRadioStation]] = {}
-for region in [tohoku, kanto, kinki]:
+for region in [tohoku, kanto, kinki, chugoku]:
     for attr in dir(region):
         target = getattr(region, attr)
         if isclass(target) and getattr(target, 'tag_key', '') != '':
