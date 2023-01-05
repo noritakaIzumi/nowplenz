@@ -137,6 +137,12 @@ docker run --rm -it -v /`pwd`:/root -w //root alpine ./docker-entrypoint.sh
   - `fmosaka`: FM大阪
   - `kiss-fm`: Kiss FM KOBE
   - `fm802`: FM802 (大阪)
+  - `e-radio`: e-radio (滋賀)
+- Chugoku
+  - `fm-sanin`: FM 山陰
+  - `fm-okayama`: FM OKAYAMA
+  - `hiroshima-fm`: HFM (広島)
+  - `fmy`: エフエム山口 FMY
 
 ---
 
