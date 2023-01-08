@@ -19,3 +19,6 @@ remove-caches:
 	find ${TARGET_DIRNAME} -type d -name "__pycache__" \
 	| sed 's/^pkg\///g' \
 	| xargs -I{} zip -d ${ZIP_FILENAME} {}/*
+
+create-layers:
+	docker run --rm -it -v `pwd`:/root -w /root python:3.9-alpine ash create-layers.sh
