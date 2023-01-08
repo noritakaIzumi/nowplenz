@@ -50,6 +50,7 @@ Python pip で以下のパッケージをインストールし、 zip 圧縮し�
 - beautifulsoup4
 
 以下のスクリプトでも実行できます。
+レイヤーは `build/layers` ディレクトリに出来上がります。
 
 ```shell
 make create-layers
