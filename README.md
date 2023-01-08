@@ -49,6 +49,13 @@ Python pip で以下のパッケージをインストールし、 zip 圧縮し�
 - mypy-boto3-iam
 - beautifulsoup4
 
+以下のスクリプトでも実行できます。
+レイヤーは `build/layers` ディレクトリに出来上がります。
+
+```shell
+make create-layers
+```
+
 ### Lambda functions
 
 1. Python ランタイムで関数を作成します。（Python 3.9 で動作確認済みです。）

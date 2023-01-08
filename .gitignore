@@ -7,3 +7,4 @@
 
 # package for upload...
 *.zip
+/build
