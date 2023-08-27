@@ -68,3 +68,18 @@ class Fm802RadioStation(AbstractRadioStation):
                 cd_image_url = self.station_url + cd_image_url
 
         return SongInfo(song_name, artist, cd_image_url)
+
+
+class FmShigaRadioStation(MtmDefaultRadioStation):
+    """FM 滋賀
+    """
+    tag_key = 'e-radio'
+
+    def get_radio_station_name(self) -> str:
+        return 'FM 滋賀'
+
+    def get_station_url(self) -> str:
+        return 'https://www.e-radio.co.jp/'
+
+    def get_station_id(self) -> str:
+        return 'uv'

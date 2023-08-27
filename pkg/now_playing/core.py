@@ -7,7 +7,6 @@ from urllib import request, parse
 import boto3
 
 from metaclass_util import build_required_attributes_metaclass
-from secretmanager_accessor import get_token
 
 
 @final
@@ -179,8 +178,8 @@ class AbstractRadioStation(metaclass=build_required_attributes_metaclass([
 
 @final
 class SlackPostNowPlaying:
-    def __init__(self, token_secret_arn: str, token_region: str) -> None:
-        self.token = get_token(token_secret_arn, token_region)
+    def __init__(self, slack_api_token: str) -> None:
+        self.token = slack_api_token
 
     def __post_to_slack(self, radio_station: AbstractRadioStation, song_info: SongInfo):
         station_name = radio_station.station_name
