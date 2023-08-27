@@ -4,8 +4,8 @@ from .core import AbstractRadioStation, SlackPostNowPlaying
 from .radio_stations import RADIO_STATION_MAP
 
 
-def get_slack_post_instance(token_secret_arn: str, token_region: str) -> SlackPostNowPlaying:
-    return SlackPostNowPlaying(token_secret_arn=token_secret_arn, token_region=token_region)
+def get_slack_post_instance(slack_api_token: str) -> SlackPostNowPlaying:
+    return SlackPostNowPlaying(slack_api_token=slack_api_token)
 
 
 def get_radio_station_instances(stations: List[Dict[str, str]]) -> List[AbstractRadioStation]:

@@ -4,30 +4,18 @@ Slack にラジオ局のなうぷれを投稿するシステムです。 AWS リ
 
 ---
 
-## 必要な AWS リソース
+## Slack API トークンの用意
 
-### SecretsManager
+Slack API を使用するための Bot User OAuth Token を用意します。
 
-Slack API を使用するための Bot User OAuth Token を次のように格納してください。
-
-- Key/Value 方式
-
-| Secret key | Secret value                                              |
-|:-----------|:----------------------------------------------------------|
-| token      | xoxb-0000000000000-0000000000000-xxxxxxxxxxxxxxxxxxxxxxxx |
-
-- Plaintext 方式
-
-```text
-{
-  "token": "xoxb-0000000000000-0000000000000-xxxxxxxxxxxxxxxxxxxxxxxx"
-}
-```
+`xoxb-0000000000000-0000000000000-xxxxxxxxxxxxxxxxxxxxxxxx`
 
 Bot Token Scopes については以下のスコープを追加してください。
 
 - chat:write
 - chat:write.customize
+
+## 必要な AWS リソース
 
 ### IAM ユーザ
 
@@ -39,7 +27,6 @@ Lambda を実行するための IAM ロールを作成します。以下のポ�
 
 - AWSLambdaBasicExecutionRole
 - IAMFullAccess
-- SecretsManagerReadWrite
 
 ### Lambda layers
 
@@ -59,10 +46,12 @@ make create-layers
 ### Lambda functions
 
 1. Python ランタイムで関数を作成します。（Python 3.9 で動作確認済みです。）
-2. 実行ロールに作成した IAM ロールを指定します。
-3. 作成したレイヤーを追加します。
-4. ソースファイルを zip ファイルでアップします。後述の [ソースファイル zip の作成方法](#create-source-files) をご覧ください。
-5. 動作確認を行います。後述の [動作確認方法](#test) をご覧ください。
+2. Slack API トークンを環境変数に設定します。(key: `SLACK_API_TOKEN`,
+   value: `xoxb-0000000000000-0000000000000-xxxxxxxxxxxxxxxxxxxxxxxx`)
+3. 実行ロールに作成した IAM ロールを指定します。
+4. 作成したレイヤーを追加します。
+5. ソースファイルを zip ファイルでアップします。後述の [ソースファイル zip の作成方法](#create-source-files) をご覧ください。
+6. 動作確認を行います。後述の [動作確認方法](#test) をご覧ください。
 
 ### EventBridge rules
 
@@ -74,7 +63,7 @@ make create-layers
 
 pkg 配下のファイルを zip 形式で圧縮します。 pkg ディレクトリそのものではなく、pkg 配下のファイル・ディレクトリを対象にして圧縮することに注意してください。
 
-Docker をお使いの方は以下コマンドで圧縮済みのファイルが用意できます。
+Docker をお使いの方は以下コマンドで圧縮済みのファイル (`package.zip`) が用意できます。
 
 ```shell
 docker run --rm -it -v `pwd`:/root -w /root alpine ./docker-entrypoint.sh
@@ -96,10 +85,6 @@ docker run --rm -it -v /`pwd`:/root -w //root alpine ./docker-entrypoint.sh
 
 ```json
 {
-  "token": {
-    "secret_arn": "arn:aws:secretsmanager:us-east-1:000000000000:secret:secret-name-xxxxxx",
-    "region": "us-east-1"
-  },
   "radio_stations": [
     {
       "station_key": "kiss-fm",
@@ -115,7 +100,6 @@ docker run --rm -it -v /`pwd`:/root -w //root alpine ./docker-entrypoint.sh
 }
 ```
 
-- token: SecretsManager で作成した secret の ARN とリージョンを指定します。
 - radio_stations: 以下の情報をラジオ局ごとに指定します。
   - station_key: ラジオ局のキー
   - slack_post_channel: 投稿する Slack のチャンネル
@@ -155,7 +139,14 @@ docker run --rm -it -v /`pwd`:/root -w //root alpine ./docker-entrypoint.sh
 
 ## Roadmap
 
-- More supports of radio stations
-- Create scripts for automate the deployment
-- Create development manual
-- Threading, multiprocessing
+- [ ] More supports of radio stations
+  - [ ] Hokkaido
+  - [ ] Kanto
+  - [ ] Shikoku
+  - [ ] Kyushu
+  - [ ] Okinawa
+  - [ ] Overseas
+- [ ] Create scripts for automate the deployment
+- [ ] Create development manual
+- [ ] Threading, multiprocessing
+- [ ] Configure channels via Slack's slash command
