@@ -1,5 +1,5 @@
 /.idea
-/venv
+/.venv
 
 # work in Docker
 .ash_history
