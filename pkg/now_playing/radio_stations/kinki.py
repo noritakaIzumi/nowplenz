@@ -52,18 +52,17 @@ class Fm802RadioStation(AbstractRadioStation):
         return 'https://funky802.com'
 
     def get_np_url(self) -> str:
-        return self.station_url + '/service/OnairList/today'
+        return self.station_url + '/site/onairlist'
 
     def get_song_info(self) -> SongInfo:
         f: IO
         with request.urlopen(self.np_url) as f:
             soup = BeautifulSoup(f.read().decode('utf-8'), 'html.parser')
-            elements = soup.select('.noa-song-list > dd:first-of-type')
-
-            element = BeautifulSoup(str(elements[0]), 'html.parser')
-            song_name = element.select('.song-name')[0].string
-            artist = element.select('.artist-name')[0].string
-            cd_image_url = element.select('.cd-image > img')[0]['src']
+            elements = soup.select('div.c-infoOnair__lists > div:nth-child(1)')
+            element_soup = BeautifulSoup(str(elements[0]), 'html.parser')
+            song_name = element_soup.select('.c-infoOnair__list--title')[0].string
+            artist = element_soup.select('.c-infoOnair__list--artist')[0].string
+            cd_image_url = element_soup.select('.c-infoOnair__list--img > a > img')[0]['src']
             if cd_image_url[0] == '/':
                 cd_image_url = self.station_url + cd_image_url
 
