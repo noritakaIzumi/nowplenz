@@ -1,8 +1,12 @@
 from abc import ABCMeta
-from typing import Type, Any, List, Dict, Union
+from typing import Type, Any, List, TypedDict
 
 
-def build_required_attributes_metaclass(required_attrs: List[Dict[str, Union[str, type]]]) -> Type[ABCMeta]:
+class RequiredAttr(TypedDict):
+    name: str
+    type: Type
+
+def build_required_attributes_metaclass(required_attrs: List[RequiredAttr]) -> Type[ABCMeta]:
     """クラス変数が定義されていないとエラーになるメタクラスを生成する。
 
     Args:
